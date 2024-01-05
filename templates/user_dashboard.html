@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .user-dashboard-container {
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+        color: #333;
+    }
+
+    .tool-group {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .tool-name {
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .questions-list {
+        list-style: none;
+        padding: 0;
+    }
+
+    .question-item {
+        margin-bottom: 5px;
+        white-space: pre-line; /* Preserve line breaks */
+    }
+    </style>
+</head>
+<body>
+    <div class="user-dashboard-container">
+        <h2>Welcome, User!</h2>
+        <p>You are now logged in to the User Dashboard.</p>
+        <h3>Tools and Questions:</h3>
+<!--   Intial - 1     <ul>-->
+<!--            {% for item in tools_and_questions %}-->
+<!--                <li>-->
+<!--                    <strong>Tool:</strong> {{ item['Tool'] }}<br>-->
+<!--                    <strong>Question:</strong> {{ item['Question'] }}<br>-->
+<!--                </li>-->
+<!--            {% endfor %}-->
+<!--        </ul>-->
+        {% if tools_and_questions %}
+            {% set grouped_tools = {} %}
+            {% for tool_and_questions in tools_and_questions %}
+                {% set tool = tool_and_questions['Tool'] %}
+                {% set question = tool_and_questions['Question'] %}
+                {% set existing_questions = grouped_tools.get(tool, []) %}
+                {% set _ = existing_questions.append(question) %}
+                {% set _ = grouped_tools.update({tool: existing_questions}) %}
+            {% endfor %}
+
+            {% for tool, questions in grouped_tools.items() %}
+                <div class="tool-group">
+                    <div class="tool-name">{{ tool }}</div>
+                    <ul class="questions-list">
+                        {% for question in questions %}
+                            <li class="question-item">{{ question }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>No tools and questions available.</p>
+        {% endif %}
+    </div>
+    <form method="post" action="{{ url_for('logout') }}" style="position: absolute; top: 10px; right: 10px;">
+       <button type="submit">Logout</button>
+    </form>
+</body>
+</html>
