@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 216 28% 4%;
+    --foreground: 210 20% 90%;
+
+    --card: 216 25% 7%;
+    --card-foreground: 210 20% 90%;
+
+    --popover: 216 25% 7%;
+    --popover-foreground: 210 20% 90%;
+
+    --primary: 226 71% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 172 83% 29%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 216 20% 12%;
+    --muted-foreground: 215 15% 55%;
+
+    --accent: 172 83% 29%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 216 20% 14%;
+    --input: 216 20% 14%;
+    --ring: 226 71% 40%;
+
+    --radius: 0.375rem;
+
+    /* Status colors */
+    --status-safe: 142 71% 45%;
+    --status-warning: 38 92% 50%;
+    --status-critical: 0 72% 51%;
+    --status-unpinned: 215 15% 45%;
+
+    /* Sidebar */
+    --sidebar-background: 216 28% 5%;
+    --sidebar-foreground: 210 15% 65%;
+    --sidebar-primary: 226 71% 40%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 216 20% 10%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 216 20% 12%;
+    --sidebar-ring: 226 71% 40%;
+  }
+
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 226 71% 40%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 172 83% 29%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 15% 40%;
+
+    --accent: 172 83% 29%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214 20% 85%;
+    --input: 214 20% 85%;
+    --ring: 226 71% 40%;
+
+    --status-safe: 142 71% 35%;
+    --status-warning: 38 92% 45%;
+    --status-critical: 0 72% 50%;
+    --status-unpinned: 215 15% 55%;
+
+    --sidebar-background: 0 0% 97%;
+    --sidebar-foreground: 215 15% 35%;
+    --sidebar-primary: 226 71% 40%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 92%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 20% 88%;
+    --sidebar-ring: 226 71% 40%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-mono-data {
+    font-family: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+  }
+  .font-mono {
+    font-family: 'IBM Plex Mono', monospace;
+  }
+  .font-sans {
+    font-family: 'IBM Plex Sans', sans-serif;
+  }
+}
+
+@keyframes pulse-critical {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-pulse-critical {
+  animation: pulse-critical 1.5s ease-in-out infinite;
+}
